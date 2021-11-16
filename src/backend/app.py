@@ -13,7 +13,7 @@ import pandas as pd
 import re
 from collections import Counter
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS, cross_origin
 from urllib.parse import unquote
 import pickle
@@ -235,9 +235,9 @@ def naiveBayes_predict(str_, phi_y, phi_n_given_spam, phi_n_given_ham):
 # ---------------------------- Roads for the API ---------------------------- #
 # --------------------------------------------------------------------------- #
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='')
 CORS(app)
-@app.route("/", methods = ['GET'])
+@app.route("/api", methods = ['GET'])
 @cross_origin()
 def homepage():
     return jsonify({'message': [404, 'Not Found']})
@@ -254,6 +254,9 @@ def prediction(stringToPredict):
     
     return jsonify({'prediction':prediction})
 
+@app.route('/')
+def serve():
+    return send_from_directory(app.static_folder, 'index.html')
 
 if __name__ == '__main__':
     app.run()
