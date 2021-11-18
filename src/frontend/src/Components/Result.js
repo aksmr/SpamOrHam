@@ -1,6 +1,8 @@
 const styles = {
     result: {
         fontSize: `calc(20px + 6vmin)`,
+        margin: '3vh',
+        color: '#DEDEDE',
     }
 }
 
