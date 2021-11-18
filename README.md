@@ -1,44 +1,45 @@
 # Spam or Ham
-Site Internet permettant de savoir si un texte est considéré comme un spam ou non.
+Website that lets you know if a text is considered spam or not.
 
-## Lien vers le site
-Voir ci-joint : [`https://is-it-spam-or-ham.herokuapp.com/`](https://is-it-spam-or-ham.herokuapp.com/)
+## Informations
+- This project was done by myself from A to Z.
+- Link to the site: [`https://is-it-spam-or-ham.herokuapp.com/`](https://is-it-spam-or-ham.herokuapp.com/)
 
-## Composition du repository
-Le repository est composé de deux éléments :
-* Le backend
-* Le frontend
+## Composition of the repository
+The repository is composed of two elements:
+* The backend
+* The frontend
 
 ### Backend
-#### Présentation Générale
-Dans ce dossier, nous retrouvons le fichier `app.py`. Dans ce fichier, nous trouvons le modèle génératif Naïve Bayes entraîné permettant de différencier un texte d'une classe `SPAM` d'une classe `HAM`.
+#### General Overview
+In this file we find the `app.py` file. In this file we find the trained Naïve Bayes generative model for differentiating text from a `SPAM` class from a `HAM` class.
 
-#### Étapes de création du modèle
-La réalisation du modèle est composée de plusieurs étapes :
-1. Construction d'un dictionnaire de mots provenant d'un ensemble d'emails donnés.
-2. Pour chaque email, construction d'un feature vecteur qui indique quel mot du disctionnaire apparaît dans l'email.
-3. Design d'un modèle génératif pour le problème:
-  * Calcul de `Φ_y` = `P(Y = 1)`
-  * Calcul de `Φ_n_given_spam` = `P(Xn = 1 | Y = 1)`
-  * Calcul de `Φ_n_given_ham` = `P(Xn = 1 | Y = 0)`
+#### Steps in creating the model
+The creation of the model consists of several steps:
+1. Building a dictionary of words from a given set of emails.
+2. For each email, construction of a feature vector that indicates which word from the dictionary appears in the email.
+3. Design a generative model for the problem:
+  * Compute `Φ_y` = `P(Y = 1)`
+  * Compute `Φ_n_given_spam` = `P(Xn = 1 | Y = 1)`
+  * Compute `Φ_n_given_ham` = `P(Xn = 1 | Y = 0)`
 
-#### Prédictions
-Une fois ces trois paramètres calculés, le modèle est entraîné et opérationnel. Nous n'avons plus qu'à enregistrer de manière binaire dans un fichier. Ce fichier sera lu à chaque fois que nous souhaitons réaliser une prédiction.
+#### Predictions
+Once these three parameters have been calculated, the model is trained and operational. All we have to do now is to save it in binary form in a file. This file will be read each time we want to make a prediction.
 
-Nous utilisons la librairie `Flask` pour créer nos routes — principalement la route `/prediction/<stringToPredict>` — qui seront utilisées par les requêtes HTTP côté [frontend](#frontend).
+We use the `Flask` library to create our routes - mainly the `/prediction/<stringToPredict>` route - which will be used by HTTP requests on the [frontend](#frontend) side.
 
-#### Lancement du serveur
-Pour lancer le serveur, il est nécessaire de saisir le code suivant à la racine du dossier `backend` dans une invite de commande :
+#### Launching the server
+To start the server, it is necessary to enter the following code at the root of the `backend` folder in a command prompt:
 ```PowerShell
 src\backend> flask run
 ```
 
 ### Frontend
-#### Présentation Générale
-Le frontend est réalisé avec la bibliothèque Javascript nommée `ReactJS`.
+#### General presentation
+The frontend is made with the Javascript library named `ReactJS`.
 
-#### Lancement du serveur
-Pour lancer le serveur, il est nécessaire de saisir le code suivant à la racine du dossier `frontend` dans une invite de commande :
+#### Launching the server
+To start the server, it is necessary to enter the following code at the root of the `frontend` folder in a command prompt:
 ```PowerShell
 src\frontend> npm start
 ```
